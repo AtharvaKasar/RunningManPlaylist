@@ -14,10 +14,6 @@ import urllib.parse
 # the username is passed as a parameter to the script manually, and it's the 1st element, 0th being name of script itself
 username = sys.argv[1]
 
-# User ID for Facebook users 22bg3h2b6ayxzpr44gma45eqy?si=cK5FiLjrTPuRSx3P3AmDPw
-
-# Erase cache and prompt for user permission
-
 try:
     token = util.prompt_for_user_token(username, scope='user-library-read')
 except:
