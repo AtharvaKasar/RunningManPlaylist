@@ -161,11 +161,11 @@ def write_to_file():
         a = a + 1
         f.write("\n")
         string_to_add = song_info["id"]
-        string_to_add += ", " + str(song_info["tempo"])
-        string_to_add += ", " + str(song_info["danceability"])
-        string_to_add += ", " + str(song_info["time_signature"])
-        string_to_add += ", " + str(song_info["valence"])
-        string_to_add += ", " + str(t)
+        string_to_add += "," + str(song_info["tempo"])
+        string_to_add += "," + str(song_info["danceability"])
+        string_to_add += "," + str(song_info["time_signature"])
+        string_to_add += "," + str(song_info["valence"])
+        string_to_add += "," + str(t)
         print (string_to_add)
         # bruh = f"{str(song_info["id"])}, {str(song_info["tempo"])}, {str(song_info["danceability"])}, {str(song_info["time_signature"])}, {str(song_info["valence"])}, {str(t)}"
         # print(bruh)
