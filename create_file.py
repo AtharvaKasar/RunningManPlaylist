@@ -116,7 +116,7 @@ def get_song_info(song_id):
 
     response_json = response.json()
 
-    # print(json.dumps(response_json, indent=2))
+    print(json.dumps(response_json, indent=2))
 
     return response_json
 
@@ -145,7 +145,7 @@ def get_song_info(song_id):
     '''
 
 f = open("data.csv", 'w')
-f.write("track ID, tempo, danceability, time signature, valence, target")
+f.write("track ID,tempo,danceability,time signature,valence,energy,target")
 
 def write_to_file():
     a = 0
@@ -165,10 +165,9 @@ def write_to_file():
         string_to_add += "," + str(song_info["danceability"])
         string_to_add += "," + str(song_info["time_signature"])
         string_to_add += "," + str(song_info["valence"])
+        string_to_add += "," + str(song_info["energy"])
         string_to_add += "," + str(t)
         print (string_to_add)
-        # bruh = f"{str(song_info["id"])}, {str(song_info["tempo"])}, {str(song_info["danceability"])}, {str(song_info["time_signature"])}, {str(song_info["valence"])}, {str(t)}"
-        # print(bruh)
         f.write(string_to_add)
 
 

@@ -77,9 +77,14 @@ class SpotifyClient(object):
         print(f"SONG ID: {song_id}")
         temp = "spotify:track:" + song_id
         print(f"TEMP: {temp}")
-        bruh = { "ids" : [song_id] }
+        arr = [temp]
+        print(arr)
+        print(type(arr))
+        bruh = { "uris" : arr }
+        print(type(bruh))
+        print(json.dumps(bruh))
         response = requests.post(
-            url,
+            url=url,
             data=json.dumps(bruh),
             headers={
                 "Content-Type": "application/json",

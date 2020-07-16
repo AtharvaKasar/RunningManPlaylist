@@ -19,7 +19,7 @@ import seaborn as sns
 import io
 from scipy import misc
 
-get_ipython().run_line_magic('matplotlib', 'inline')
+# get_ipython().run_line_magic('matplotlib', 'inline')
 
 
 # In[72]:
@@ -67,17 +67,17 @@ c = DecisionTreeClassifier()
 # In[77]:
 
 
-features = [" tempo"," danceability"," time signature"," valence"]
+features = ["tempo","danceability","time signature","valence", "energy"]
 
 
 # In[79]:
 
 
 X_train = train[features]
-y_train = train[" target"]
+y_train = train["target"]
 
 X_test = test[features]
-y_test = test[" target"]
+y_test = test["target"]
 
 
 # In[80]:
@@ -95,13 +95,13 @@ y_pred = c.predict(X_test)
 # In[82]:
 
 
-y_pred
+print(y_pred)
 
 
 # In[83]:
 
 
-y_test
+print(y_test)
 
 
 # In[ ]:
