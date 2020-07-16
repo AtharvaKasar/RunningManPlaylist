@@ -25,7 +25,7 @@ def run():
     # VVVVVVVV this is what i want to be able to do eventually
     # get all of the new releases
 
-    # create a decision tree based on user data????? how am i gonna do this
+    # create a decision tree based on user data
 
     # go through new releases and based on decision tree, decide which ones are the best ones
 
