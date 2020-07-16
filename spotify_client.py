@@ -78,14 +78,10 @@ class SpotifyClient(object):
         temp = "spotify:track:" + song_id
         print(f"TEMP: {temp}")
         arr = [temp]
-        print(arr)
-        print(type(arr))
-        bruh = { "uris" : arr }
-        print(type(bruh))
-        print(json.dumps(bruh))
+        json_data = { "uris" : arr }
         response = requests.post(
             url=url,
-            data=json.dumps(bruh),
+            data=json.dumps(json_data),
             headers={
                 "Content-Type": "application/json",
                 "Authorization": f"Bearer {self.api_token}"
