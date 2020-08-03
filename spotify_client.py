@@ -31,17 +31,28 @@ class SpotifyClient(object):
 
         response_json = response.json()
 
-        print(json.dumps(response_json, indent=2))
+        # print(json.dumps(response_json, indent=2))
 
         #right now, new releases gives us ALBUMS, but we want a bunch of songs
 
         results = response_json["albums"]["items"]
 
+        newL = []
+
+        for elt in results:
+            print(f"ADDING {elt['id']}")
+            newL.append(elt['id'])
+
+
+
+
         if results:
-            print("we good")
+            print(json.dumps(results, indent=2))
+            print(newL)
+            print("\nwe good")
             print(results[0]["id"])
             print(results[0]["name"])
-            return results[0]["id"]
+            return newL
         else:
             raise Exception("could not find new releases")
 
@@ -58,18 +69,53 @@ class SpotifyClient(object):
 
         response_json = response.json()
 
-        print(json.dumps(response_json, indent=2))
+        # print(json.dumps(response_json, indent=2))
 
         results = response_json["items"]
 
         if results:
-            print("we good")
             temp = results[0]["id"]
             print(f"song id: {temp}")
             print(results[0]["name"])
             return results[0]["id"]
         else:
             raise Exception("could not find tracks")
+
+    def get_all_songs_from_albums(self, album_ids):
+        song_ids = []
+
+        print("\nALBUM IDS LIST")
+        print(album_ids)
+
+        for album_id in album_ids:
+            print("\nALBUM ID")
+            print(album_id)
+            url = f"https://api.spotify.com/v1/albums/{album_id}/tracks"
+            response = requests.get(
+                url,
+                headers={
+                    "Content-Type": "application/json",
+                    "Authorization": f"Bearer {self.api_token}"
+                }
+            )
+
+            response_json = response.json()
+
+            results = response_json["items"]
+
+            if results:
+                print("we good")
+                for track in results:
+                    temp = track["id"]
+                    song_ids.append(temp)
+                    print(f"song id: {temp}")
+                    print(track["name"])
+            else:
+                raise Exception("could not find tracks")
+        
+        # print(song_ids)
+        return song_ids
+        
 
     
     def add_one_song_to_playlist(self, playlist_id, song_id):
@@ -95,6 +141,22 @@ class SpotifyClient(object):
         spotipyObj = spotipy.Spotify(auth=self.api_token)
         playlist_name = "NEW PLAYLIST"    
         sp.user_playlist_create(username, name=playlist_name)
+
+    def get_song_info(self, song_id):
+        url = f"https://api.spotify.com/v1/audio-features/{song_id}"
+        response = requests.get(
+            url,
+            headers={
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {self.api_token}"
+            }
+        )
+
+        response_json = response.json()
+
+        print(json.dumps(response_json, indent=2))
+
+        return response_json
 
 
 
